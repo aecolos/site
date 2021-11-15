@@ -18,6 +18,47 @@
 		<link href="./images/favicon.ico" rel="Shortcut Icon">
 		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 		<link href="./css/main.css" rel="stylesheet" type="text/css">
+		<script lang="javascript" src="./js/xlsx.full.min.js"></script>
+		<script src="https://unpkg.com/lunr/lunr.js"></script>
+		<script src="./dist/bundle.js"></script>
+		<script>
+			window.Papercups = {
+			  config: {
+				// Pass in your Papercups account token here after signing up
+				token: 'aceb76fc-dd76-4426-859e-ffe8754b0b40',
+				// Specify a Papercups inbox
+				inbox: 'c0b750af-5636-40dc-a42d-f1dc4da9d131',
+				title: 'Welcome to Papercups!',
+				subtitle: 'Ask us anything in the chat window below 😊',
+				newMessagePlaceholder: 'Start typing...',
+				primaryColor: '#13c2c2',
+				// Optionally pass in a default greeting
+				greeting: 'Hi there! How can I help you?',
+				// Optionally pass in metadata to identify the customer
+				customer: {
+				  name: 'Test User',
+				  email: 'test@test.com',
+				  external_id: '123',
+				  metadata: {version: 1, plan: 'premium'}, // Custom fields go here
+				},
+				// Optionally specify the base URL
+				baseUrl: 'https://app.papercups.io',
+				// Add this if you want to require the customer to enter
+				// their email before being able to send you a message
+				requireEmailUpfront: true,
+				// Add this if you want to indicate when you/your agents
+				// are online or offline to your customers
+				showAgentAvailability: true,
+			  },
+			};
+		  </script>
+		  <script
+			type="text/javascript"
+			async
+			defer
+			src="https://app.papercups.io/widget.js"
+		  ></script>
+		  <script src="https://unpkg.com/page/page.js"></script>
 	</head>
 	<body class="homepage">
 		<div class="toTop"><i class="icon-angle-up"></i></div>
@@ -48,13 +89,13 @@
 									<a href="./"><span>Início</span></a> 
 								</li> 
 								<li class="lfr-nav-item dropdown" id="layout_2"> 
-									<a class="dropdown-toggle" href="javascript:void(0);"><span>Menu Interior<b class="icon-caret-down"></b></span></a> 
+									<a class="dropdown-toggle" href="javascript:void(0);"><span>Apoio<b class="icon-caret-down"></b></span></a> 
 									<ul class="sub-menu"> 
 										<li class="lfr-nav-item" id="layout_3">
-											<a href="./link1">Link1</a>
+											<a href="https://github.com/aecolos/aecolos" target="_blank">Q&A Forum</a>
 										</li> 
 										<li class="lfr-nav-item" id="layout_4">
-											<a href="./link2">Link2</a>
+											<a href="./prof" target="_blank">Prof</a>
 										</li>
 										<li class="lfr-nav-item" id="layout_5">
 											<a href="./link3">Link3</a> 
@@ -73,9 +114,175 @@
 								<li class="lfr-nav-item" id="layout_9">
 									<a href="./noticias"><span>Notícias</span></a> 
 								</li>
+								<li class="lfr-nav-item dropdown" id="layout_2"> 
+									<a class="dropdown-toggle" href="javascript:void(0);"><span>Acesso<b class="icon-caret-down"></b></span></a> 
+									<div class="sub-menu">
+										<div id="login">
+											<label for="user">Nome</label>
+											<input type="text" value="" placeholder="Insira o seu username" name="user" />
+											<div>
+												<input type="radio" id="huey" name="drone" value="sqlite"
+													   checked>
+												<label for="huey">SQLite</label>
+												<input type="radio" id="dewey" name="drone" value="excel">
+												<label for="dewey">Excel</label>
+												<input type="radio" id="" name="drone" value="sso" disabled>
+												<label for="dewey">SSO</label>
+											  </div>
+											  
+											  <div>
+											  </div>
+											<button onclick=qsolver()>ok</button>
+										</div>
+										<div id="logout"></div>
+									</div>
+									<script>
+										function xls() {
+											var url = "usersdb.xlsx";
+
+											/* set up async GET request */
+											var req = new XMLHttpRequest();
+											req.open("GET", url, true);
+											req.responseType = "arraybuffer";
+
+											req.onload = function(e) {
+												var workbook = XLSX.read(req.response);
+
+												var first_sheet_name = workbook.SheetNames[0];
+												var address_of_cell = 'B2';
+
+												/* Get worksheet */
+												var worksheet = workbook.Sheets[first_sheet_name];
+
+												/* Find desired cell */
+												var desired_cell = worksheet[address_of_cell];
+												var A2 = worksheet['A2'];
+
+												/* Get the value */
+												//var desired_value = (desired_cell ? desired_cell.v : undefined);
+
+												let connected = false;
+
+												if(desired_cell && desired_cell.v === document.querySelector('#login > input').value && !connected){
+														connected = true;
+														document.querySelector('#login').style.display = "none";
+														let p = document.createElement('p');
+														p.innerText = `Parabéns, está agora conectado como ${desired_cell.v} com id ${A2.v}`;
+														let button = document.createElement('button');
+														button.innerText = "Logout";
+														button.onclick = function(){
+															document.querySelector('#login').style.display = "block";
+															document.querySelector('#logout').style.display = "none";
+															document.querySelector('#login > input').value = "";
+															connected = false;
+														}
+														document.querySelector('#logout').innerHTML = "";
+														document.querySelector('#logout').prepend(p, button);
+												}
+													else if(connected) {
+														document.querySelector('#login').style.display = "none";
+														let p = document.createElement('p');
+														p.innerText = `${document.querySelector('#login > input').value} já está connectado, faça logout para sair e entrar com outra conta se pretender`;
+														let button = document.createElement('button');
+														button.innerText = "Logout";
+														button.onclick = function(){
+															document.querySelector('#login').style.display = "block";
+															document.querySelector('#logout').style.display = "none";
+															document.querySelector('#login > input').value = "";
+															result = [];
+															connected = false;
+														}
+														document.querySelector('#logout').innerHTML = "";
+														document.querySelector('#logout').prepend(p, button);
+													} 
+													else if (document.querySelector('#login > input').value === "") {
+														document.querySelector('#logout').innerHTML = "Por favor preencha o campo Nome com o seu username";
+														document.querySelector('#logout').style.display = "block";
+													} else {
+														document.querySelector('#logout').innerHTML = `${document.querySelector('#login > input').value} não está registado`;
+														document.querySelector('#logout').style.display = "block";
+														document.querySelector('#login > input').value = "";
+													}
+											}
+
+											req.send();
+										}
+										function qsolver (ev) {
+											const rbs = document.querySelectorAll('input[type=radio][name=drone]');
+											for (const rb of rbs) {
+												if (rb.checked && rb.value === "excel") {
+													xls();
+													return;
+												}
+											}
+											//danger! sanitize user input before commit query
+											let result = window.query(document.querySelector('#login > input').value), connected = false;
+											result.then(resp => {
+												if (resp.length > 0 && !connected){
+													connected = true;
+													document.querySelector('#login').style.display = "none";
+													let p = document.createElement('p');
+													p.innerText = `Parabéns, está agora conectado como ${resp[0].name} com id ${resp[0].id}`;
+													let button = document.createElement('button');
+													button.innerText = "Logout";
+													button.onclick = function(){
+														document.querySelector('#login').style.display = "block";
+														document.querySelector('#logout').style.display = "none";
+														document.querySelector('#login > input').value = "";
+														result = [];
+														connected = false;
+													}
+													document.querySelector('#logout').innerHTML = "";
+													document.querySelector('#logout').prepend(p, button);
+												}
+												else if(connected) {
+													document.querySelector('#login').style.display = "none";
+													let p = document.createElement('p');
+													p.innerText = `${document.querySelector('#login > input').value} já está connectado, faça logout para sair e entrar com outra conta se pretender`;
+													let button = document.createElement('button');
+													button.innerText = "Logout";
+													button.onclick = function(){
+														document.querySelector('#login').style.display = "block";
+														document.querySelector('#logout').style.display = "none";
+														document.querySelector('#login > input').value = "";
+														result = [];
+														connected = false;
+													}
+													document.querySelector('#logout').innerHTML = "";
+													document.querySelector('#logout').prepend(p, button);
+												} 
+												else if (document.querySelector('#login > input').value === "") {
+													document.querySelector('#logout').innerHTML = "Por favor preencha o campo Nome com o seu username";
+												} else {
+													document.querySelector('#logout').innerHTML = `${document.querySelector('#login > input').value} não está registado`;
+													document.querySelector('#logout').style.display = "block";
+													document.querySelector('#login > input').value = "";
+												}
+											}).catch((err)=>{console.log(err);});
+											
+										}
+									</script>
+								</li>
 								<li class="search-icon">
 									<i class="icone-search">&nbsp;</i>
 								</li> 
+								<script>
+									let docs = [{
+										"id": document.documentURI,
+										"txt": document.documentElement.innerText
+									}];
+									let idx = lunr(function () {
+										this.ref('id');
+										this.field('txt');
+
+										docs.forEach(function (doc) {
+											this.add(doc)
+										}, this)
+									});
+									document.querySelector('.icon-angle-right').addEventListener('click', function (evt){
+										//idx.search(document.querySelector('.search-box input').value);
+									});
+								</script>
 							</ul> 
 						</div> 
 					</nav> 
@@ -379,11 +586,19 @@
 				    </div>
 				</div>
 			</div>
-		</div>
-		<script type="text/javascript" src="./js/jquery-3.1.1.min.js"></script> 
+		</div> 
+		<script type="text/javascript" src="./js/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="./js/jquery.bxslider.min.js"></script>
 		<script type="text/javascript" src="./js/select2.full.min.js"></script>
 		<script type="text/javascript" src="./js/main.js"></script>		
 		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<script>
+			//page.base('/prof');
+			page('/prof/:prof', function(ctx){
+				if(ctx.params.prof === 'aecolos')
+					page('/prof');
+			});
+			page();
+		</script>
 	</body>
 </html>
