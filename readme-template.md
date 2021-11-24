@@ -3,7 +3,7 @@
 <!-- title -->
 
 <!--lint ignore no-dead-urls-->
-# RECURSOS EDUCATIVOS FORMIDÁVEIS
+# RECURSOS EDUCATIVOS
 
 <!-- subtitle -->
 
