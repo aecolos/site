@@ -19,3 +19,7 @@ Incorporação de plataforma de blog para o corpo doçente do AE Colos disponív
 ### 0.1.3.1
 
 Migração da autenticação para um servidor externo por indisponibilidade do serviço de contas Google
+
+## 0.2 (alpha release)
+
+Transferência de conteúdos do site antigo para a nova plataforma completa. Primeiro protótipo utilizável para testagem
