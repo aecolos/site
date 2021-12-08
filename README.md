@@ -23,3 +23,7 @@ Migração da autenticação para um servidor externo por indisponibilidade do s
 ## 0.2 (alpha release)
 
 Transferência de conteúdos do site antigo para a nova plataforma completa. Primeiro protótipo utilizável para testagem
+
+### 0.2.0.1
+
+Resolução de bug no popup do registo
