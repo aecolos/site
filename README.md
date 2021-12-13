@@ -27,3 +27,7 @@ Transferência de conteúdos do site antigo para a nova plataforma completa. Pri
 ### 0.2.0.1
 
 Resolução de bug no popup do registo
+
+## 0.2.1.1
+
+Integração experimental de CMS Netlify
