@@ -28,6 +28,10 @@ Transferência de conteúdos do site antigo para a nova plataforma completa. Pri
 
 Resolução de bug no popup do registo
 
-## 0.2.1.1
+### 0.2.1.1
 
 Integração experimental de CMS Netlify
+
+### 0.2.1.2
+
+Criação da págima da newsletter e incorporação de templates underscorejs para o menu
