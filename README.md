@@ -38,7 +38,7 @@ Criação da págima da newsletter e incorporação de templates underscorejs pa
 
 ### 0.2.1.3
 
-Remoção do calendário lectivo da página principal e incorporação na página dos horários; alteração do calendário escoçar tendo em conta a recuperação das aprendizagens em face do prolongamento da pausa de natal devido ao covid. Alteração do link CMS no menu para um protótipo de página de docente. Correcção de pequenos bugs em links das páginas de notícias
+Remoção do calendário lectivo da página principal e incorporação na página dos horários; alteração do calendário escolar tendo em conta a recuperação das aprendizagens em face do prolongamento da pausa de natal devido ao covid. Alteração do link CMS no menu para um protótipo de página de docente. Correcção de pequenos bugs em links das páginas de notícias
 
 ### 0.2.1.4
 
