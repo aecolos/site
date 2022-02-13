@@ -43,3 +43,7 @@ Remoção do calendário lectivo da página principal e incorporação na págin
 ### 0.2.1.4
 
 Remoção do git submodule academic-student-profile que crashava o deployment devido a erro no parsing de latex em markdown
+
+### 0.2.2
+
+Inserção de link para a página do motor de busca regional [Goodmira](https://aecolos.github.io/goodmira/) do projecto de final de semestre do 3º ciclo. Repo: [https://github.com/aecolos/goodmira](https://github.com/aecolos/goodmira)
