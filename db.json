@@ -1,5 +1,0 @@
-{
-  "articles": {  "articles":[{    "slug": "welcome",    "title": "Bem vindo ao blog dos Profs do AE Colos",    "description": "Blog dos Profs do AE Colos",    "body": "Blog post",    "tagList": ["intro"],    "createdAt": "2016-02-18T03:22:56.637Z",    "updatedAt": "2016-02-18T03:48:35.824Z",    "favorited": false,    "favoritesCount": 0,    "author": {      "username": "aecolos",      "bio": "aecolos admin",      "image": "",      "following": false    }  }],  "articlesCount": 1,
-               "article":{  "id": "welcome", "slug": "welcome",    "title": "Bem vindo ao blog dos Profs do AE Colos",    "description": "Blog dos Profs do AE Colos",    "body": "Blog post",    "tagList": ["intro"],    "createdAt": "2016-02-18T03:22:56.637Z",    "updatedAt": "2016-02-18T03:48:35.824Z",    "favorited": false,    "favoritesCount": 0,    "author": {      "username": "aecolos",      "bio": "aecolos admin",      "image": "",      "following": false    }  }
- }
-}

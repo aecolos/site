@@ -10,7 +10,7 @@ Suporte a autenticação de acesso via sqlite, excel, ou sso (a implementar)
 
 ## 0.1.2
 
-Adição de chat box e de fórum do tipo Q&A via github issues
+Adição de chat box e de fórum do tipo q&a via github issues
 
 ## 0.1.3
 
